@@ -15,9 +15,10 @@ create unique index location_location_id_uindex
 
 create table organization
 (
-    organization_id serial not null
+    organization_id serial  not null
         constraint organization_pk
-            primary key
+            primary key,
+    name            varchar not null
 );
 
 alter table organization
