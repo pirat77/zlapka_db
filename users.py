@@ -69,7 +69,7 @@ def count_elements_in_table(cursor, tableName):
 
 def pick_preferences_id_list():
     preferencesList = []
-    numberOfPreferences = random.randint(1, 10)
+    numberOfPreferences = random.randint(1, 5)
     while (len(preferencesList) < numberOfPreferences):
         random_id = random.randint(1, preferencesIdInDB)
         if random_id in preferencesList:
