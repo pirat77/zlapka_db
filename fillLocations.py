@@ -1,7 +1,6 @@
 import dao
 import random
 
-
 def genRandomName(adjectives, nouns):
     adjective = adjectives[random.randrange(len(adjectives))]
     noun = nouns[random.randrange(len(nouns))]
