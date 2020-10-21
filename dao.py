@@ -14,6 +14,10 @@ def get_organization(cursor, organization_id=None):
     return answers
 
 @connection.connection_handler
+def insert_group(cursor, group_name, public):
+    cursor.execute(f"""INSERT INTO zlapka.group (name, public) VALUES ('{group_name}', '{public}');""")
+
+@connection.connection_handler
 def insert_organization(cursor, org_name):
     cursor.execute(f"""INSERT INTO zlapka.organization (name) VALUES ('{org_name}');""")
     
