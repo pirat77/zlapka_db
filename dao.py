@@ -13,6 +13,37 @@ def get_organization(cursor, organization_id=None):
     return answers
 
 @connection.connection_handler
+def insert_event(cursor, name, description, max_participant, date, duration, public, event_category, event_location, event_organization):
+    cursor.execute(f"""INSERT INTO zlapka.event (name, description, max_participant, date, duration, public, 
+                                                    event_category_id, event_location_id, event_organization_id) 
+                        VALUES ('{name}', '{description}', '{max_participant}', '{date}', '{duration}', '{public}', '{event_category}',
+                                '{event_location}', '{event_organization}');""")
+
+@connection.connection_handler
+def list_event_category_id(cursor):
+    cursor.execute("""SELECT category_id FROM zlapka.event_category""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['category_id'])
+    return answers
+
+@connection.connection_handler
+def list_event_location_id(cursor):
+    cursor.execute("""SELECT location_id FROM zlapka.location""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['location_id'])
+    return answers
+
+@connection.connection_handler
+def list_organization_id(cursor):
+    cursor.execute("""SELECT organization_id FROM zlapka.organization""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['organization_id'])
+    return answers
+
+@connection.connection_handler
 def insert_location(cursor, location_name, geo_tag):
     cursor.execute(f"""INSERT INTO zlapka.location (name, geo_tag) VALUES ('{location_name}', {geo_tag});""")
 
