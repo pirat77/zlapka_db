@@ -2,7 +2,6 @@ import connection
 import util
 from operator import itemgetter
 
-
 @connection.connection_handler
 def get_organization(cursor, organization_id=None):
     if organization_id:
@@ -12,6 +11,10 @@ def get_organization(cursor, organization_id=None):
         cursor.execute("""SELECT * FROM zlapka.organization""")
         answers = [dict(row) for row in cursor.fetchall()]
     return answers
+
+@connection.connection_handler
+def insert_location(cursor, location_name, geo_tag):
+    cursor.execute(f"""INSERT INTO zlapka.location (name, geo_tag) VALUES ('{location_name}', {geo_tag});""")
 
 @connection.connection_handler
 def insert_user_category(cursor, user_category_name):
