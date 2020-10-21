@@ -31,15 +31,16 @@ create table advertisement
 (
     advertisement_id serial  not null
         constraint advertisement_pk
-            primary key
-        constraint advertisement_fk
-            references organization
-            on update cascade,
+            primary key,
     information      varchar not null,
     target           varchar not null,
-    picture          bytea,
+    picture          varchar,
     launch           date    not null,
-    duration         integer
+    duration         integer,
+    organization_id  integer not null
+        constraint advertisement_fk
+            references organization
+            on update cascade
 );
 
 alter table advertisement
@@ -61,24 +62,27 @@ alter table event_category
 
 create table event
 (
-    event_id        serial  not null
+    event_id              serial  not null
         constraint event_pk
-            primary key
+            primary key,
+    name                  varchar not null,
+    description           varchar not null,
+    max_participant       integer,
+    date                  date    not null,
+    duration              integer not null,
+    public                boolean not null,
+    event_category_id     integer not null
         constraint event_event_category_category_id_fk
             references event_category
-            on update cascade
+            on update cascade,
+    event_location_id     integer
         constraint event_location_location_id_fk
             references location
-            on update cascade
+            on update cascade,
+    event_organization_id integer
         constraint event_organization_organization_id_fk
             references organization
-            on update cascade,
-    name            varchar not null,
-    description     varchar not null,
-    max_participant integer,
-    date            date    not null,
-    duration        integer not null,
-    public          boolean not null
+            on update cascade
 );
 
 alter table event
@@ -133,40 +137,44 @@ alter table preference
 create unique index preference_preference_id_uindex
     on preference (preference_id);
 
-create table "user"
+create table users
 (
-    user_id     serial  not null
+    user_id          serial  not null
         constraint user_pk
-            primary key
-        constraint user_location_location_id_fk
+            primary key,
+    first_name       varchar not null,
+    last_name        varchar not null,
+    description      varchar,
+    photo            varchar,
+    email            varchar not null,
+    user_location_id integer
+        constraint user_location_location_id
             references location
-            on update cascade
+            on update cascade,
+    user_category_id integer not null
         constraint user_user_category_category_id_fk
             references user_category
-            on update cascade,
-    first_name  varchar not null,
-    last_name   varchar not null,
-    description varchar,
-    photo       bytea,
-    email       varchar not null
+            on update cascade
 );
 
-alter table "user"
+alter table users
     owner to postgres;
 
 create unique index user_user_id_uindex
-    on "user" (user_id);
+    on users (user_id);
 
 create table user_preference
 (
-    id serial not null
+    id            serial  not null
         constraint user_preference_pk
-            primary key
+            primary key,
+    preference_id integer not null
         constraint user_preference_preference_preference_id_fk
             references preference
-            on update cascade
+            on update cascade,
+    user_id       integer not null
         constraint user_preference_user_user_id_fk
-            references "user"
+            references users
             on update cascade
 );
 
@@ -178,14 +186,16 @@ create unique index user_preference_id_uindex
 
 create table user_group
 (
-    id serial not null
+    id       serial  not null
         constraint user_group_pk
-            primary key
+            primary key,
+    group_id integer not null
         constraint user_group_group_group_id_fk
             references "group"
-            on update cascade
+            on update cascade,
+    user_id  integer not null
         constraint user_group_user_user_id_fk
-            references "user"
+            references users
             on update cascade
 );
 
@@ -199,16 +209,18 @@ create table message
 (
     message_id serial  not null
         constraint message_pk
-            primary key
-        constraint message_group_group_id_fk
-            references "group"
-            on update cascade
-        constraint message_user_user_id_fk
-            references "user"
-            on update cascade,
+            primary key,
     title      varchar,
     content    varchar not null,
-    photo      bytea
+    photo      varchar,
+    group_id   integer not null
+        constraint message_group_group_id_fk
+            references "group"
+            on update cascade,
+    user_id    integer not null
+        constraint message_user_user_id_fk
+            references users
+            on update cascade
 );
 
 alter table message
@@ -219,16 +231,18 @@ create unique index message_message_id_uindex
 
 create table user_relations
 (
-    id     serial  not null
+    id        serial  not null
         constraint user_relations_pk
-            primary key
+            primary key,
+    status    varchar not null,
+    user_id_1 integer not null
         constraint user_relations_user_user_id_fk
-            references "user"
-            on update cascade
-        constraint user_relations_user_user_id_fk_2
-            references "user"
+            references users
             on update cascade,
-    status varchar not null
+    user_id_2 integer not null
+        constraint user_relations_user_user_id_fk_2
+            references users
+            on update cascade
 );
 
 alter table user_relations
@@ -241,12 +255,13 @@ create table voucher
 (
     voucher_id serial  not null
         constraint voucher_pk
-            primary key
-        constraint voucher_user_user_id_fk
-            references "user"
-            on update cascade,
+            primary key,
     type       varchar not null,
-    value      integer
+    value      integer,
+    user_id    integer not null
+        constraint voucher_user_user_id_fk
+            references users
+            on update cascade
 );
 
 alter table voucher
@@ -257,16 +272,18 @@ create unique index voucher_voucher_id_uindex
 
 create table user_organization
 (
-    id   serial not null
+    id              serial  not null
         constraint user_organization_pk
-            primary key
+            primary key,
+    role            varchar,
+    organization_id integer not null
         constraint user_organization_organization_organization_id_fk
             references organization
-            on update cascade
-        constraint user_organization_user_user_id_fk
-            references "user"
             on update cascade,
-    role varchar
+    user_id         integer not null
+        constraint user_organization_user_user_id_fk
+            references users
+            on update cascade
 );
 
 alter table user_organization
@@ -277,15 +294,17 @@ create unique index user_organization_id_uindex
 
 create table user_event
 (
-    id serial not null
+    id       serial  not null
         constraint user_event_pk
             primary key
         constraint user_event_event_event_id_fk
             references event
             on update cascade
         constraint user_event_user_user_id_fk
-            references "user"
-            on update cascade
+            references users
+            on update cascade,
+    event_id integer not null,
+    user_id  integer not null
 );
 
 alter table user_event
@@ -296,16 +315,18 @@ create unique index user_event_id_uindex
 
 create table ticket
 (
-    ticket_id serial not null
+    ticket_id     serial  not null
         constraint ticket_pk
-            primary key
+            primary key,
+    price         integer,
+    event_id      integer not null
         constraint ticket_event_event_id_fk
             references event
-            on update cascade
+            on update cascade,
+    user_event_id integer
         constraint ticket_user_event_id_fk
             references user_event
-            on update cascade,
-    price     integer
+            on update cascade
 );
 
 alter table ticket
@@ -313,5 +334,4 @@ alter table ticket
 
 create unique index ticket_ticket_id_uindex
     on ticket (ticket_id);
-
 
