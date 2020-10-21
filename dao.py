@@ -17,7 +17,18 @@ def get_organization(cursor, organization_id=None):
 def insert_organization(cursor, org_name):
     cursor.execute("""INSERT INTO organization (name) VALUES (%s);""", (org_name))
     
-
-
+@connection.connection_handler
+def fill_preferences_table(cursor):
+    id = 1
+    sql = "INSERT INTO zlapka.preference VALUES "
+    preferencesFile = open("./media/preferencesList.txt", "r")
+    for line in preferencesFile:
+        value = line.replace("\n", "").replace("\r", "")
+        if id != 1:
+            sql += ","
+        sql += f"""({id},'{value}')"""
+        id += 1
+    sql += ";"
+    cursor.execute(sql)
 
 
