@@ -32,7 +32,11 @@ def fill_preferences_table(cursor):
     cursor.execute(sql)
 
 @connection.connection_handler
+def insert_preference(cursor):
+
+
+@connection.connection_handler
 def insert_event_category(cursor, event_category_name):
-    cursor.execute("""INSERT INTO zlapka.event_category (name) VALUES ('{event_category_name}');""")
+    cursor.execute(f"""INSERT INTO zlapka.event_category (name) VALUES ('{event_category_name}');""")
 
 
