@@ -17,11 +17,11 @@ def fill_user_table(cursor):
     for line in firstNamesFile:
         firstValue = True
         firstName = line.replace("\n", "").replace("\r", "")
-
+        sql = ""
         for lastName in lastNamesList:
-            sql = generate_insert_command(index, firstName, lastName)
-            cursor.execute(sql)
+            sql += generate_insert_command(index, firstName, lastName)
             index += 1
+        cursor.execute(sql)
 
 
 def generate_email(firstName, lastName, index):
