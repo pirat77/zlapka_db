@@ -85,4 +85,5 @@ def assign_variables():
     locationsIdInDB = count_elements_in_table("location")
     userCategoriesIdInDB= count_elements_in_table("user_category")
 
+assign_variables()
 fill_user_table()
