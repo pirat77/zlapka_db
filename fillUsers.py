@@ -7,8 +7,8 @@ userCategoriesIdInDB = 0
 
 @connection.connection_handler
 def fill_user_table(cursor):
-    firstNamesFile = open("zlapka_db/media/first_names.txt", "r")
-    lastNamesFile = open("zlapka_db/media/last_names.txt", "r")
+    firstNamesFile = open("./media/first_names.txt", "r")
+    lastNamesFile = open("./media/last_names.txt", "r")
     lastNamesList = []
     for lastName in lastNamesFile:
         value = lastName.replace("\n", "").replace("\r", "")
@@ -42,16 +42,16 @@ def generate_insert_command(index, firstName, lastName):
     preferences = ", ".join(preferencesList)
     email = generate_email(firstName, lastName, index)
 
-    return f"""INSERT INTO users VALUES ({index},'{firstName}','{lastName}',
+    return f"""INSERT INTO zlapka.users VALUES ({index},'{firstName}','{lastName}',
             CONCAT('Hi! My name is {firstName} and I live in ',
-            (SELECT name FROM location WHERE location_id = {location_id}),
+            (SELECT name FROM zlapka.location WHERE location_id = {location_id}),
             '. Things I''m interested in: ',
-            (SELECT string_agg(name, ', ') FROM preference WHERE preference_id IN ({preferences}))),
+            (SELECT string_agg(name, ', ') FROM zlapka.preference WHERE preference_id IN ({preferences}))),
             'path/to/photo', '{email}', {location_id}, {category_id});
             {generate_user_preferences_insert_command(preferencesList, index)}"""
 
 def generate_user_preferences_insert_command(preferencesList, userIndex):
-    sql = "INSERT INTO user_preference (user_id, preference_id) VALUES "
+    sql = "INSERT INTO zlapka.user_preference (user_id, preference_id) VALUES "
     firstRecord = True
     for preferenceId in preferencesList:
         if (firstRecord == False):
@@ -81,9 +81,9 @@ def assign_variables():
     global preferencesIdInDB 
     global locationsIdInDB 
     global userCategoriesIdInDB 
-    preferencesIdInDB = count_elements_in_table("preference")
-    locationsIdInDB = count_elements_in_table("location")
-    userCategoriesIdInDB= count_elements_in_table("user_category")
+    preferencesIdInDB = count_elements_in_table("zlapka.preference")
+    locationsIdInDB = count_elements_in_table("zlapka.location")
+    userCategoriesIdInDB= count_elements_in_table("zlapka.user_category")
 
 assign_variables()
 fill_user_table()
