@@ -1,7 +1,7 @@
 import connection
 from dao import count_elements_in_table
 
-amountOfRowsPerTransaction = 1000
+amountOfRowsPerTransaction = 1000000
 
 @connection.connection_handler
 def fill_user_relations(cursor):
@@ -13,7 +13,7 @@ def fill_user_relations(cursor):
     firstLineSql = "INSERT INTO zlapka.user_relations (status, user_id_1, user_id_2) VALUES "
     sql = firstLineSql
     firstValue = True
-    for idUser in range(1, usersInDB - friendsToAddPerUser):
+    for idUser in range(1, usersInDB - friendsToAddPerUser + 1):
         firstFriend = idUser + 1
         for idFriend in range(firstFriend, firstFriend + friendsToAddPerUser):
             if (firstValue == False):
