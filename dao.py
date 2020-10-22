@@ -69,7 +69,7 @@ def list_organization_id(cursor):
 
 @connection.connection_handler
 def insert_city(cursor, city_name, geo_tag):
-    cursor.execute(f"""INSERT INTO zlapka.location (name, geotag) VALUES ('{city_name}', {geotag});""")
+    cursor.execute(f"""INSERT INTO zlapka.city (name, geotag) VALUES ('{city_name}', {geo_tag});""")
 
 @connection.connection_handler
 def insert_location(cursor, location_name, geo_tag):
