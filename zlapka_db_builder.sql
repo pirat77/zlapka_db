@@ -338,3 +338,18 @@ alter table ticket
 create unique index ticket_ticket_id_uindex
     on ticket (ticket_id);
 
+create table city
+(
+    city_id serial    not null
+        constraint city_pk
+            primary key,
+    name    varchar   not null,
+    geotag  integer[] not null
+);
+
+alter table city
+    owner to postgres;
+
+create unique index city_city_id_uindex
+    on city (city_id);
+
