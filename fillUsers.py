@@ -1,5 +1,6 @@
 import connection
 import random
+from dao import count_elements_in_table
 
 preferencesIdInDB = 0
 locationsIdInDB = 0
@@ -60,12 +61,6 @@ def generate_user_preferences_insert_command(preferencesList, userIndex):
         firstRecord = False
     sql += ";"
     return sql
-
-@connection.connection_handler
-def count_elements_in_table(cursor, tableName):
-    cursor.execute(f"""SELECT COUNT(*) FROM {tableName};""")
-    result = cursor.fetchone()["count"]
-    return result
 
 def pick_preferences_id_list():
     preferencesList = []
