@@ -1,0 +1,120 @@
+Aberdeen,57,-2
+Adelaide,-34,138
+Algiers,36,3
+Amsterdam,52,4
+Ankara,39,32
+Asunción,-25,-57
+Athens,37,23
+Auckland,-36,174
+Bangkok,13,100
+Barcelona,41,2
+Beijing,39,116
+Belém,-1,-48
+Belfast,54,-5
+Belgrade,44,20
+Berlin,52,13
+Birmingham,52,-1
+Bogotá,4,-74
+Bombay,19,72
+Bordeaux,44,0
+Bremen,53,8
+Brisbane,-27,153
+Bristol,51,-2
+Brussels,50,4
+Bucharest,44,26	
+Budapest,47,19	
+Buenos Aires,-34,-58
+Cairo,30,31
+Calcutta,22,88
+Canton,23,113
+Cape Town,-33,18
+Caracas,10,-67	
+Cayenne,4,-52
+Chihuahua,28,-106
+Chongqing,29,106
+Copenhagen,55,12
+Córdoba,-31,-64
+Dakar,14,-17
+Darwin,-12,130
+Djibouti,11,42
+Dublin,53,-15
+Durban,-29,30
+Edinburgh,55,-3
+Frankfurt,50,8
+Georgetown,6,-58
+Glasgow,55,-4
+Guatemala City,14,-90
+Guayaquil,-2,-79
+Hamburg,53,10
+Hammerfest,70,23
+Havana,23,-23
+Helsinki,60,25
+Hobart,-42,147
+Hong Kong,22,114
+Iquique,-20,-70
+Irkutsk,52,104
+Jakarta,-6,106
+Johannesburg,-26,28
+Kingston,17,-76
+Kinshasa,-4,15
+Kuala Lumpur,3,101
+La Paz,-16,-68
+Leeds,53,-1
+Lima,-12,-77
+Lisbon,38,-9
+Liverpool,53,-3
+London,51,0
+Lyons,45,4
+Madrid,40,-3
+Manchester,53,-2
+Manila,14,120
+Marseilles,43,5
+Mazatlán,23,-106
+Mecca,21,39
+Melbourne,-37,144
+Mexico City,19,-99
+Milan,45,9
+Montevideo,-34,-56
+Moscow,55,37
+Munich,48,11
+Nagasaki,32,129
+Nagoya,35,136
+Nairobi,-1,36
+Nanjing,32,118
+Naples,40,14
+New Delhi,28,77
+Newcastle-on-Tyne,          England	54	58 N	1	37 W	5:00 p.m.
+Odessa,                     Ukraine	46	27 N	30	48 E	7:00 p.m.
+Osaka,                      Japan	34	32 N	135	30 E	2:00 a.m.1
+Oslo,                       Norway	59	57 N	10	42 E	6:00 p.m.
+Panama City,                Panama	8	58 N	79	32 W	12:00 noon
+Paramaribo,             Suriname	5	45 N	55	15 W	2:00 p.m.
+Paris,                      France	48	48 N	2	20 E	6:00 p.m.
+Perth,                  Australia	31	57 S	115	52 E	1:00 a.m.1
+Plymouth,                   England	50	25 N	4	5 W	5:00 p.m.
+Port Moresby,   Papua New Guinea	9	25 S	147	8 E	3:00 a.m.1
+Prague,             Czech Republic	50	5 N	14	26 E	6:00 p.m.
+Rangoon,                    Myanmar	16	50 N	96	0 E	11:30 p.m.
+Reykjavík,                  Iceland	64	4 N	21	58 W	5:00 p.m.
+Rio de Janeiro,             Brazil	22	57 S	43	12 W	2:00 p.m.
+Rome,                       Italy	41	54 N	12	27 E	6:00 p.m.
+Salvador,                   Brazil	12	56 S	38	27 W	2:00 p.m.
+Santiago,                   Chile	33	28 S	70	45 W	1:00 p.m.
+St. Petersburg,             Russia	59	56 N	30	18 E	8:00 p.m.
+São Paulo,                  Brazil	23	31 S	46	31 W	2:00 p.m.
+Shanghai,                   China	31	10 N	121	28 E	1:00 a.m.1
+Singapore,              Singapore	1	14 N	103	55 E	1:00 a.m.1
+Sofia,                  Bulgaria	42	40 N	23	20 E	7:00 p.m.
+Stockholm,                  Sweden	59	17 N	18	3 E	6:00 p.m.
+Sydney,                 Australia	34	0 S	151	0 E	3:00 a.m.1
+Tananarive,             Madagascar	18	50 S	47	33 E	8:00 p.m.
+Teheran,                    Iran	35	45 N	51	45 E	8:30 p.m.
+Tokyo,                      Japan	35	40 N	139	45 E	2:00 a.m.1
+Tripoli,                    Libya	32	57 N	13	12 E	7:00 p.m.
+Venice,                     Italy	45	26 N	12	20 E	6:00 p.m.
+Veracruz,                   Mexico	19	10 N	96	10 W	11:00 a.m.
+Vienna,                     Austria	48	14 N	16	20 E	6:00 p.m.
+Vladivostok,                Russia	43	10 N	132	0 E	3:00 a.m.1
+Warsaw,                     Poland	52	14 N	21	0 E	6:00 p.m.
+Wellington,             New Zealand	41	17 S	174	47 E	5:00 a.m.1
+Zürich,                 Switzerland	47	21 N	8	31 E	6:00 p.m.
