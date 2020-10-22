@@ -28,6 +28,14 @@ def list_event_id(cursor):
     return answers
 
 @connection.connection_handler
+def list_public_event_id(cursor):
+    cursor.execute("""SELECT event_id FROM zlapka.event as e WHERE e.public='true'""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['event_id'])
+    return answers
+
+@connection.connection_handler
 def list_user_id(cursor):
     cursor.execute("""SELECT user_id FROM zlapka.users""")
     answers = [] 
@@ -58,6 +66,10 @@ def list_organization_id(cursor):
     for row in cursor.fetchall():
         answers.append(row['organization_id'])
     return answers
+
+@connection.connection_handler
+def insert_city(cursor, city_name, geo_tag):
+    cursor.execute(f"""INSERT INTO zlapka.location (name, geotag) VALUES ('{city_name}', {geotag});""")
 
 @connection.connection_handler
 def insert_location(cursor, location_name, geo_tag):
