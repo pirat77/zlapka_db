@@ -20,6 +20,22 @@ def insert_event(cursor, name, description, max_participant, date, duration, pub
                                 '{event_location}', '{event_organization}');""")
 
 @connection.connection_handler
+def list_event_id(cursor):
+    cursor.execute("""SELECT event_id FROM zlapka.event""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['event_id'])
+    return answers
+
+@connection.connection_handler
+def list_user_id(cursor):
+    cursor.execute("""SELECT user_id FROM zlapka.users""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['user_id'])
+    return answers
+
+@connection.connection_handler
 def list_event_category_id(cursor):
     cursor.execute("""SELECT category_id FROM zlapka.event_category""")
     answers = [] 
