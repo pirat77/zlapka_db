@@ -1,5 +1,6 @@
 import connection
 import random
+from dao import count_elements_in_table
 
 preferencesIdInDB = 0
 locationsIdInDB = 0
@@ -9,16 +10,16 @@ userCategoriesIdInDB = 0
 def fill_user_table(cursor):
     firstNamesFile = open("./media/first_names.txt", "r")
     lastNamesFile = open("./media/last_names.txt", "r")
-    lastNamesList = []
-    for lastName in lastNamesFile:
-        value = lastName.replace("\n", "").replace("\r", "")
-        lastNamesList.append(value)
+    firstNamesList = []
+    for firstName in firstNamesFile:
+        value = firstName.replace("\n", "").replace("\r", "")
+        firstNamesList.append(value)
     index = 1
-    for line in firstNamesFile:
-        firstValue = True
-        firstName = line.replace("\n", "").replace("\r", "")
+    for line in lastNamesFile:
+        lastValue = True
+        lastName = line.replace("\n", "").replace("\r", "")
         sql = ""
-        for lastName in lastNamesList:
+        for firstName in firstNamesList:
             sql += generate_insert_command(index, firstName, lastName)
             index += 1
         cursor.execute(sql)
@@ -60,12 +61,6 @@ def generate_user_preferences_insert_command(preferencesList, userIndex):
         firstRecord = False
     sql += ";"
     return sql
-
-@connection.connection_handler
-def count_elements_in_table(cursor, tableName):
-    cursor.execute(f"""SELECT COUNT(*) FROM {tableName};""")
-    result = cursor.fetchone()["count"]
-    return result
 
 def pick_preferences_id_list():
     preferencesList = []
