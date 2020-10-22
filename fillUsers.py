@@ -9,16 +9,16 @@ userCategoriesIdInDB = 0
 def fill_user_table(cursor):
     firstNamesFile = open("./media/first_names.txt", "r")
     lastNamesFile = open("./media/last_names.txt", "r")
-    lastNamesList = []
-    for lastName in lastNamesFile:
-        value = lastName.replace("\n", "").replace("\r", "")
-        lastNamesList.append(value)
+    firstNamesList = []
+    for firstName in firstNamesFile:
+        value = firstName.replace("\n", "").replace("\r", "")
+        firstNamesList.append(value)
     index = 1
-    for line in firstNamesFile:
-        firstValue = True
-        firstName = line.replace("\n", "").replace("\r", "")
+    for line in lastNamesFile:
+        lastValue = True
+        lastName = line.replace("\n", "").replace("\r", "")
         sql = ""
-        for lastName in lastNamesList:
+        for firstName in firstNamesList:
             sql += generate_insert_command(index, firstName, lastName)
             index += 1
         cursor.execute(sql)
