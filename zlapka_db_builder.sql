@@ -1,3 +1,6 @@
+create schema zlapka;
+set search_path to zlapka;
+
 create table location
 (
     location_id serial  not null
