@@ -232,12 +232,20 @@ alter table message
 create unique index message_message_id_uindex
     on message (message_id);
 
+create type u_relation as enum (
+    'USER1_BLOCKED_USER2',
+    'USER2_BLOCKED_USER1',
+    'USER1_INVITED_USER2',
+    'USER2_INVITED_USER1',
+    'USER1_ACCEPTED_USER2',
+    'USER2_ACCEPTED_USER1');
+
 create table user_relations
 (
     id        serial  not null
         constraint user_relations_pk
             primary key,
-    status    varchar not null,
+    status    u_relation not null,
     user_id_1 integer not null
         constraint user_relations_user_user_id_fk
             references users
@@ -253,6 +261,9 @@ alter table user_relations
 
 create unique index user_relations_id_uindex
     on user_relations (id);
+
+create index uid1 ON user_relations (user_id_1);
+create index uid2 ON user_relations (user_id_2);
 
 create table voucher
 (
