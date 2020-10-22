@@ -265,25 +265,6 @@ create unique index user_relations_id_uindex
 create index uid1 ON user_relations (user_id_1);
 create index uid2 ON user_relations (user_id_2);
 
-CREATE OR REPLACE FUNCTION check_unique_relation(IN id1 INTEGER, IN id2 INTEGER)
-RETURNS INTEGER AS $body$
-DECLARE retval INTEGER DEFAULT 0;
-BEGIN
-SELECT COUNT(*) INTO retval FROM (
-  SELECT * FROM user_relations WHERE user_id_1 = id1 AND user_id_2 = id2
-  UNION ALL
-  SELECT * FROM user_relations WHERE user_id_1 = id2 AND user_id_2 = id1
-) AS pairs;
-RETURN retval;
-END
-$body$
-LANGUAGE 'plpgsql';
-
-ALTER TABLE user_relations ADD CONSTRAINT unique_pair
-    CHECK (check_unique_relation(user_id_1, user_id_2) < 1);
-
-alter table user_relations add constraint check (user_id_1 <> user_id_2);
-
 create table voucher
 (
     voucher_id serial  not null
