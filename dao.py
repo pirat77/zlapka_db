@@ -67,4 +67,8 @@ def insert_preference(cursor, preference_name):
 def insert_event_category(cursor, event_category_name):
     cursor.execute(f"""INSERT INTO zlapka.event_category (name) VALUES ('{event_category_name}');""")
 
-
+@connection.connection_handler
+def count_elements_in_table(cursor, tableName):
+    cursor.execute(f"""SELECT COUNT(*) FROM {tableName};""")
+    result = cursor.fetchone()["count"]
+    return result
