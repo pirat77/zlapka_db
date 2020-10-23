@@ -1,6 +1,5 @@
 import dao
 import random
-import random
 import time
 
 def str_time_prop(start, end, format, prop):

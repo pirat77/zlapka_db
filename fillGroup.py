@@ -20,7 +20,6 @@ def main():
     for line in nounsFile:
         nouns.append(line.replace("\n", "").replace("\r", ""))
 
-    
     for _ in range(1000):
         dao.insert_group(genRandomName(adjectives, nouns), bool(random.getrandbits(1)))
 
