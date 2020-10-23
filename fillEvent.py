@@ -2,6 +2,17 @@ import dao
 import random
 import random
 import time
+import datetime
+
+def get_rand_date():
+    start_date = datetime.date(2020, 1, 1)
+    end_date = datetime.date(2025, 2, 1)
+
+    time_between_dates = end_date - start_date
+    days_between_dates = time_between_dates.days
+    random_number_of_days = random.randrange(days_between_dates)
+    random_date = start_date + datetime.timedelta(days=random_number_of_days)
+    return random_date
 
 def str_time_prop(start, end, format, prop):
     """Get a time at a proportion of a range of two formatted times.
@@ -50,7 +61,7 @@ def main():
         name = genRandomName(adjectives, verbs)
         description = f"""{genRandomName(adjectives, verbs)}! {genRandomName(adjectives, verbs)}, {genRandomName(adjectives, verbs)}, {genRandomName(adjectives, verbs)}! Take your friends!"""
         max_participant = random.randrange(10, 1000)
-        date = random_date("10/10/2020 1:30 PM", "12/12/2025 4:50 AM", random.random())
+        date = get_rand_date()
         duration = random.randrange(30, 480)
         public =  random.randrange(10, 10000) < max_participant
         category_id = category_list[random.randrange(len(category_list))]
