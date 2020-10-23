@@ -1,7 +1,7 @@
 import connection
 from dao import count_elements_in_table
 
-amountOfRowsPerTransaction = 1000000
+amountOfRowsPerTransaction = 50000
 
 @connection.connection_handler
 def fill_user_relations(cursor):

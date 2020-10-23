@@ -20,6 +20,14 @@ def insert_event(cursor, name, description, max_participant, date, duration, pub
                                 '{event_location}', '{event_organization}');""")
 
 @connection.connection_handler
+def list_available_event(cursor, city):
+    cursor.execute(f"""select * from analitics.local_events({city});""")
+    events = []
+    for row in cursor.fetchall():
+        events.append(row['event_id'])
+    return events        
+
+@connection.connection_handler
 def list_event_id(cursor):
     cursor.execute("""SELECT event_id FROM zlapka.event""")
     answers = [] 
@@ -53,7 +61,7 @@ def list_event_category_id(cursor):
 
 @connection.connection_handler
 def list_event_location_id(cursor):
-    cursor.execute("""SELECT location_id FROM zlapka.location""")
+    cursor.execute("""SELECT location_id FROM zlapka.location;""")
     answers = [] 
     for row in cursor.fetchall():
         answers.append(row['location_id'])
@@ -61,11 +69,23 @@ def list_event_location_id(cursor):
 
 @connection.connection_handler
 def list_organization_id(cursor):
-    cursor.execute("""SELECT organization_id FROM zlapka.organization""")
+    cursor.execute("""SELECT organization_id FROM zlapka.organization;""")
     answers = [] 
     for row in cursor.fetchall():
         answers.append(row['organization_id'])
     return answers
+
+@connection.connection_handler
+def list_city_id(cursor):
+    cursor.execute("""SELECT city_id FROM zlapka.city;""")
+    answers = [] 
+    for row in cursor.fetchall():
+        answers.append(row['city_id'])
+    return answers
+
+@connection.connection_handler
+def insert_user_event(cursor, event_id, user_id):
+    cursor.execute(f"""INSERT INTO zlapka.user_event (event_id, user_id) VALUES ('{event_id}', '{user_id}');""")
 
 @connection.connection_handler
 def insert_city(cursor, city_name, geo_tag):

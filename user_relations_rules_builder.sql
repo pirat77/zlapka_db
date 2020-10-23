@@ -1,4 +1,3 @@
-
 create or replace function zlapka.hash_relation(id1 integer, id2 integer)
 returns varchar as
 $$
@@ -10,7 +9,7 @@ begin
 end;
 $$ language plpgsql immutable;
 
-CREATE OR REPLACE FUNCTION check_unique_relation(id1 INTEGER, id2 INTEGER)
+CREATE OR REPLACE FUNCTION zlapka.check_unique_relation(id1 INTEGER, id2 INTEGER)
 RETURNS INTEGER AS $body$
 DECLARE
     retval INTEGER DEFAULT 0;
@@ -30,13 +29,13 @@ END
 $body$
 LANGUAGE 'plpgsql';
 
-create index relation_index ON user_relations (hash_relation(user_id_1, user_id_2));
+create index relation_index ON zlapka.user_relations (zlapka.hash_relation(user_id_1, user_id_2));
 
-alter table user_relations add constraint
+alter table zlapka.user_relations add constraint
     different_values check (user_id_1 <> user_id_2);
 
-ALTER TABLE user_relations ADD CONSTRAINT unique_pair
-    CHECK (check_unique_relation(user_id_1, user_id_2) < 1);
+ALTER TABLE zlapka.user_relations ADD CONSTRAINT unique_pair
+    CHECK (zlapka.check_unique_relation(user_id_1, user_id_2) < 1);
 
 
 
